@@ -1,0 +1,10 @@
+class Solution:
+    def removeDuplicates(self, x: List[int]) -> int:
+        if not x:
+            return 0
+        j = 1
+        for i in range(1,len(x)):
+            if x[i] != x[i-1]:
+                x[j] = x[i]
+                j += 1
+        return j
