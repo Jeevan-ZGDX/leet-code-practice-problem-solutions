@@ -1,15 +1,8 @@
-class Solution:
-    def climbStairs(self, n: int) -> int:
-        def fct(num : int) -> int:
-            s = 1
-            for i in range(1,num+1):
-                s =s*i
-            return s
-        no_of_ways = 0
-        if n%2 == 0:
-            for i in range(0,int((n/2)+1)):
-                no_of_ways+=((fct(n-i)/((fct(n-2*i))*fct(i))))
-        else:
-            for i in range(0,int(((n-1)/2)+1)):
-                no_of_ways+=(fct(n-i)/((fct(n-2*i)*fct(i))))
-        return int(no_of_ways)
+#import <stdio.h>
+int cache[46] = {1, 1};
+int climbStairs(int n) {
+    if(cache[n]) return cache[n];
+    int out = climbStairs(n - 1) + climbStairs(n - 2);
+    cache[n] = out;
+    return out;
+}
