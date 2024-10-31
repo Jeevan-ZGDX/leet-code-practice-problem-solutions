@@ -1,12 +1,14 @@
-class Solution:
-    def moveZeroes(self, nums: List[int]) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
-        prev_idx = 0
-        for i in range(0,len(nums)):
-            if nums[i] != 0:
-                hold = nums[prev_idx];
-                nums[prev_idx] = nums[i]
-                nums[i] = hold
-                prev_idx += 1
+#import <stdio.h>
+void moveZeroes(int* nums, int numsSize) {
+    int first_pointer = 0, second_pointer = numsSize - 1;
+    while(0 <= second_pointer && second_pointer < numsSize && 0 <= first_pointer && first_pointer < numsSize) {
+        if(nums[second_pointer] == 0) second_pointer--;
+        else {
+            while(first_pointer < second_pointer && nums[first_pointer] != 0) first_pointer++;
+            if(first_pointer == second_pointer) return;
+            for(int i = first_pointer; i < second_pointer; i++) nums[i] = nums[i + 1];
+            nums[second_pointer] = 0;
+        }
+    }
+    return;
+}
