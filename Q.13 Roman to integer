@@ -1,17 +1,16 @@
-class Solution {
-public:
-    int romanToInt(string s) {
-        unordered_map<char,int> romanMap={{'I',1},{'V',5},{'X',10},{'L',50},{'C',100},{'D',500},{'M',1000}};
-        int sum=0,sizes=s.size();
-        for(int i=0;i<sizes;i++){
-            if(i<sizes-1&&romanMap[s[i]]<romanMap[s[i+1]]){
-                sum-=romanMap[s[i]];
-            }
-            else{
-                sum+=romanMap[s[i]];
-            }
-        }
-        return sum;
-        
-    }
-};
+#import <stdio.h>
+#import <string.h>
+int convert(char rom) {
+    char roman[] = "IVXLCDM";
+    int out = 1;
+    for(int i = 0; i < 7; i++, out *= (i % 2 == 0) ? 2 : 5) if(roman[i] == rom) break;
+    return out;
+}
+int romanToInt(char s[]) {
+    int sum = 0;
+    for(int i = 0; i < strlen(s); i++) {
+        int val = convert(s[i]);
+        sum += (i == strlen(s) - 1 || val >= convert(s[i + 1])) ? val : -val;
+    }
+    return sum;
+}
