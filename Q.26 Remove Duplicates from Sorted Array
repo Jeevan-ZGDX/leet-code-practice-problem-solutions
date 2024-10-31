@@ -1,10 +1,13 @@
-class Solution:
-    def removeDuplicates(self, x: List[int]) -> int:
-        if not x:
-            return 0
-        j = 1
-        for i in range(1,len(x)):
-            if x[i] != x[i-1]:
-                x[j] = x[i]
-                j += 1
-        return j
+#import <stdio.h>
+int removeDuplicates(int* nums, int numsSize) {
+    int i = 0, j = 0;
+    do {
+        if(nums[i] != nums[j]) {
+            nums[j + 1] = nums[i];
+            j++;
+        }
+        i++;
+    }
+    while(i < numsSize);
+    return j + 1;
+}
