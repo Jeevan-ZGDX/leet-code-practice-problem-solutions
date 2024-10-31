@@ -1,8 +1,11 @@
-class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
-        k = 0  # Pointer for the position of elements not equal to val
-        for i in range(len(nums)):
-            if nums[i] != val:
-                nums[k] = nums[i]
-                k += 1
-        return k
+#import <stdio.h>
+int removeElement(int* nums, int numsSize, int val) {
+    int i = 0, j = 0;
+    for(; i < numsSize; i++) {
+        if(nums[i] != val) {
+            nums[j] = nums[i];
+            j++;
+        }
+    }
+    return j;
+}
